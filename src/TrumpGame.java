@@ -2,7 +2,7 @@
 public class TrumpGame {
 	public static void main(String[] args) {
 		//ゲーム数（初期化）
-		int gameCount = 0;	//呼び出す配列の位置 ->0からスタート
+		int gameCount = 1;	//呼び出す配列の位置 ->0からスタート
 		//チップ数初期化
 		Chip chip = new Chip(10, 0);
 		//デッキ初期化
@@ -12,7 +12,7 @@ public class TrumpGame {
 //		deck.showDeck();	//デッキの内容表示
 
 		//デッキの数字をカード化
-		Card card = new Card(deck.deckToInt(gameCount));
+		Card card = new Card(deck.deckToInt(gameCount - 1));
 
 		//表示
 		System.out.println("********チップ枚数とカード********");
@@ -20,6 +20,7 @@ public class TrumpGame {
 		System.out.println(card.showCard());
 		System.out.println("****************************");
 
+		//ゲーム数を+1
 		gameCount++;
 	}
 }
