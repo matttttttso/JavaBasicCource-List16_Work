@@ -40,18 +40,20 @@ public class Chip {
 	}
 
 	//メソッドメンバ
-	String showChipNum() {
+	//チップ枚数とスコアの表示
+	public String toString() {
 		return "総計： "+ score + " ([10]:" + numChip10 + "枚, [1]:" + numChip1 + "枚)";
 	}
-
-	void increaseChipNum(int num10, int num1) {
-		this.numChip10 += num10;
-		int tmp = this.numChip1 + num1;
+	//チップを増やすメソッド
+	void increaseChipNum(int num) {
+		this.numChip10 += (int)Math.floor(num / 10);
+		int tmp = this.numChip1 + (num % 10);
 		if(tmp < 10) {
 			this.numChip1 = tmp;
 		}else if(10 <= tmp){
 			this.numChip1 = tmp % 10;
 			numChip10 += (int)Math.ceil(tmp / 10);
 		}
+		this.score = (numChip10 * 10) + (numChip1 * 1);
 	}
 }
