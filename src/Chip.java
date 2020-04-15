@@ -26,8 +26,16 @@ public class Chip {
 
 	//コンストラクタ
 	Chip(int num10, int num1){
+		//[10]のチップ数
 		this.numChip10 = num10;
-		this.numChip1 = num1;
+		//[1]のチップ数
+		if(num1 < 10) {
+			this.numChip1 = num1;
+		}else if(10 <= num1){
+			this.numChip1 = num1 % 10;
+			numChip10 += (int)Math.ceil(num1 / 10);
+		}
+
 		score = (num10 * 10) + (num1 * 1);
 	}
 
