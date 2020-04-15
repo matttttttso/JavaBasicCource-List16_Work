@@ -65,7 +65,7 @@ public class Card {
 
 	//メソッドメンバ
 	//カードの表示
-	String showCard() {
-		return "現在のカード： " + this.suit + "/" + this.numCard;
+	public String toString() {
+		return this.suit + "/" + this.numCard;
 	}
 }
