@@ -9,7 +9,7 @@ public class TrumpGame {
 		//チップ初期化
 		Chip chip = new Chip(10, 0);
 		//カードを１枚配る
-		Card card = new Card("スペード",1);
+		Card card = new Card(2);
 		//表示
 		System.out.println("********チップ枚数とカード********");
 		System.out.println(chip.showChipNum());
