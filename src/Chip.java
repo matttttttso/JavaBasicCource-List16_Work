@@ -56,4 +56,16 @@ public class Chip {
 		}
 		this.score = (numChip10 * 10) + (numChip1 * 1);
 	}
+	//チップを減らすメソッド
+	void decreaseChipNum(int num) {
+		this.numChip10 -= (int)Math.floor(num / 10);
+		int tmp = this.numChip1 - (num % 10);
+		if(0 <= tmp) {
+			this.numChip1 = tmp;
+		}else if(tmp < 0){
+			numChip10 -= 1;
+			this.numChip1 = 10 + tmp;
+		}
+		this.score = (numChip10 * 10) + (numChip1 * 1);
+	}
 }
