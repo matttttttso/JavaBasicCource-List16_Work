@@ -17,6 +17,8 @@ public class TrumpGame {
 		//表示
 		System.out.println("********チップ枚数とカード********");
 		System.out.println(chip.showChipNum());
+		chip.increaseChipNum(1, 1);
+		System.out.println(chip.showChipNum());
 		System.out.println(card1.showCard());
 		System.out.println("****************************");
 

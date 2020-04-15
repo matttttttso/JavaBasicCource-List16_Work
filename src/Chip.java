@@ -1,8 +1,8 @@
 
 public class Chip {
 	//フィールドメンバ
-	private int numChip10;	//[10]単位のチップの枚数
-	private int numChip1;	//[1]単位のチップの枚数
+	private int numChip10 = 10;	//[10]単位のチップの枚数
+	private int numChip1 = 0;	//[1]単位のチップの枚数
 	private int score;
 
 	public int getNumChip10() {
@@ -42,5 +42,16 @@ public class Chip {
 	//メソッドメンバ
 	String showChipNum() {
 		return "総計： "+ score + " ([10]:" + numChip10 + "枚, [1]:" + numChip1 + "枚)";
+	}
+
+	void increaseChipNum(int num10, int num1) {
+		this.numChip10 += num10;
+		int tmp = this.numChip1 + num1;
+		if(tmp < 10) {
+			this.numChip1 = tmp;
+		}else if(10 <= tmp){
+			this.numChip1 = tmp % 10;
+			numChip10 += (int)Math.ceil(tmp / 10);
+		}
 	}
 }
