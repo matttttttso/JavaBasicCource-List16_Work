@@ -8,20 +8,11 @@ public class Chip {
 	public int getNumChip10() {
 		return numChip10;
 	}
-	public void setNumChip10(int numChip10) {
-		this.numChip10 = numChip10;
-	}
 	public int getNumChip1() {
 		return numChip1;
 	}
-	public void setNumChip1(int numChip1) {
-		this.numChip1 = numChip1;
-	}
 	public int getScore() {
 		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
 	}
 
 	//コンストラクタ
