@@ -2,37 +2,24 @@
 public class Card {
 	//フィールドメンバ
 	private String suit;	//4つのマーク（強さは、「スペード」 > 「ハート」 > 「ダイヤ」 > 「クラブ」の順）
-	private int numCard;		//数字（1〜13）
+	private int num;		//数字（1〜13）
 	private int cardInt;	//数字1~52 (4*13)
 
 	public String getSuit() {
 		return suit;
 	}
-	public void setSuit(String suit) {
-		this.suit = suit;
-	}
-	public int getNumCard() {
-		return numCard;
-	}
-	public void setNumCard(int numCard) {
-		this.numCard = numCard;
+	public int getNum() {
+		return this.num;
 	}
 	public int getCardInt() {
 		return cardInt;
 	}
-	public void setCardInt(int cardInt) {
-		if(0 < cardInt && cardInt < 53) {
-			this.cardInt = cardInt;
-		}else {
-			this.cardInt = 0;
-		}
-	}
-
 	//コンストラクタ
 	Card(int cardInt){
 		//数字の決定
+		this.cardInt = cardInt;
 		double cardDouble = cardInt;
-		this.numCard = (int) Math.ceil(cardDouble / 4);
+		this.num = (int) Math.ceil(cardDouble / 4);
 		//suitの決定
 		int mod = cardInt % 4;
 		switch(mod) {
@@ -66,6 +53,6 @@ public class Card {
 	//メソッドメンバ
 	//カードの表示
 	public String toString() {
-		return this.suit + "/" + this.numCard;
+		return this.suit + "/" + this.num;
 	}
 }
