@@ -33,7 +33,7 @@ public class Chip {
 	//メソッドメンバ
 	//チップ枚数とスコアの表示
 	public String toString() {
-		return "総計： "+ score + " ([10]:" + numChip10 + "枚, [1]:" + numChip1 + "枚)";
+		return "所持チップ総数： "+ score + "\n([10]:" + numChip10 + "枚, [1]:" + numChip1 + "枚)";
 	}
 	//チップを増やすメソッド
 	void increaseChipNum(int num) {
