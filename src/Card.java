@@ -5,12 +5,6 @@ public class Card {
 	private int num;		//数字（1〜13）
 	private int cardInt;	//数字1~52 (4*13)
 
-	public String getSuit() {
-		return suit;
-	}
-	public int getNum() {
-		return this.num;
-	}
 	public int getCardInt() {
 		return cardInt;
 	}

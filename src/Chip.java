@@ -5,12 +5,6 @@ public class Chip {
 	private int numChip1 = 0;	//[1]単位のチップの枚数
 	private int score;
 
-	public int getNumChip10() {
-		return numChip10;
-	}
-	public int getNumChip1() {
-		return numChip1;
-	}
 	public int getScore() {
 		return score;
 	}
