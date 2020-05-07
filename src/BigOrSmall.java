@@ -15,6 +15,7 @@ public class BigOrSmall {
 	int choiceContinueGame;
 	String bigOrSmall;
 	String winOrLose;
+	Scanner scanner = new Scanner(System.in);
 //フィールドメンバ	ここまで↑
 
 //プログラム記述		ここから↓
@@ -75,6 +76,7 @@ public class BigOrSmall {
 				break;
 			}
 		}
+		scanner.close();
 		System.out.println("");
 		System.out.println("END");
 	}
@@ -181,7 +183,7 @@ public class BigOrSmall {
 		while(true) {
 			try {
 				printBet();
-				inputBetChip = new Scanner(System.in).nextInt();
+				inputBetChip = scanner.nextInt();
 				checkChipBetNum(inputBetChip);
 				break;
 			} catch (NumberOutOfBoundException e) {
@@ -203,7 +205,7 @@ public class BigOrSmall {
 	void checkChoiceBigOrSmall() {
 		while(true) {
 			try {
-				choiceBigOrSmall = new Scanner(System.in).nextInt();
+				choiceBigOrSmall = scanner.nextInt();
 				checkChoice(choiceBigOrSmall);
 				break;
 			} catch (NumberOutOfBoundException e) {
@@ -216,7 +218,7 @@ public class BigOrSmall {
 	void checkChoiceContinueBigOrSmall() {
 		while(true) {
 			try {
-				choiceContinueBigOrSmall = new Scanner(System.in).nextInt();
+				choiceContinueBigOrSmall = scanner.nextInt();
 				checkChoice(choiceContinueBigOrSmall);
 				break;
 			} catch (NumberOutOfBoundException e) {
@@ -229,7 +231,7 @@ public class BigOrSmall {
 	void checkChoiceContinueGame() {
 		while(true) {
 			try {
-				choiceContinueGame = new Scanner(System.in).nextInt();
+				choiceContinueGame = scanner.nextInt();
 				checkChoice(choiceContinueGame);
 				break;
 			} catch (NumberOutOfBoundException e) {
