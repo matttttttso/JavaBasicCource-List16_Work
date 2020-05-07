@@ -1,17 +1,17 @@
 import java.util.Random;
 
 public class Deck {
-	int[] deck = new int[52];	//52個の行列作成
+	private int[] deck = new int[52];	//52個の行列作成
 
 	//行列に1~52の数字を順に入れていく
-	void setDeck() {
+	public void setDeck() {
 		for(int i = 0; i < deck.length; i++) {
 			deck[i] = i + 1;
 		}
 	}
 
 	//シャッフルする
-	void shuffle() {
+	public void shuffle() {
 		for(int i = 0; i < deck.length; i++) {
 			Random random = new Random();
 			int randNum = random.nextInt(52);
@@ -22,7 +22,7 @@ public class Deck {
 	}
 
 	//デッキ内容表示（数字1~52で）
-	void showDeck() {
+	public void showDeck() {
 		int count = 0;
 		for(int i = 0; i < deck.length; i++) {
 			System.out.print(deck[i] + "/");
@@ -33,7 +33,7 @@ public class Deck {
 		}
 	}
 
-	int deckToInt(int i) {
+	public int deckToInt(int i) {
 		return deck[i];
 	}
 }

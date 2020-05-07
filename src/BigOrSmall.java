@@ -3,19 +3,19 @@ import java.util.Scanner;
 
 public class BigOrSmall {
 //フィールドメンバ	ここから↓
-	int gameCount;
-	static Chip chip;
-	Deck deck;
-	Card cardPrev;
-	Card cardNew;
-	int inputBetChip;
-	int getChip;
-	int choiceBigOrSmall;
-	int choiceContinueBigOrSmall;
-	int choiceContinueGame;
-	String bigOrSmall;
-	String winOrLose;
-	Scanner scanner = new Scanner(System.in);
+	private static	Chip chip;
+	private Deck	deck;
+	private Card	cardPrev,
+					cardNew;
+	private int 	gameCount,
+					inputBetChip,
+					getChip,
+					choiceBigOrSmall,
+					choiceContinueBigOrSmall,
+					choiceContinueGame;
+	private String	bigOrSmall,
+					winOrLose;
+	private Scanner scanner = new Scanner(System.in);
 //フィールドメンバ	ここまで↑
 
 //プログラム記述		ここから↓

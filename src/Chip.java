@@ -30,7 +30,7 @@ public class Chip {
 		return "所持チップ総数： "+ score + "\n([10]:" + numChip10 + "枚, [1]:" + numChip1 + "枚)";
 	}
 	//チップを増やすメソッド
-	void increaseChipNum(int num) {
+	public void increaseChipNum(int num) {
 		this.numChip10 += (int)Math.floor(num / 10);
 		int tmp = this.numChip1 + (num % 10);
 		if(tmp < 10) {
@@ -42,7 +42,7 @@ public class Chip {
 		this.score = (numChip10 * 10) + (numChip1 * 1);
 	}
 	//チップを減らすメソッド
-	void decreaseChipNum(int num) {
+	public void decreaseChipNum(int num) {
 		this.numChip10 -= (int)Math.floor(num / 10);
 		int tmp = this.numChip1 - (num % 10);
 		if(0 <= tmp) {
