@@ -16,11 +16,28 @@ public class BigOrSmall {
 	private String	bigOrSmall,
 					winOrLose;
 	private Scanner scanner = new Scanner(System.in);
+
+	public final int	INITIAL_CHIP = 10,
+						ZERO = 0,
+						ONE = 1,
+						DOUBLE = 2,
+						BIG_INT = 0,
+						SMALL_INT = 1,
+						YES = 0,
+						NO = 1,
+						BET_CHIP_MIN = 1,
+						BET_CHIP_MAX = 20,
+						CHOICE_0 = 0,
+						CHOICE_1 = 1;
+	public final String WIN = "Win!!",
+						LOSE = "Lose...",
+						BIG_STR = "Big",
+						SMALL_STR = "Small";
 //フィールドメンバ	ここまで↑
 
 //プログラム記述		ここから↓
 	BigOrSmall(){
-		chip = new Chip(10, 0);
+		chip = new Chip(INITIAL_CHIP, ZERO);
 		while(true) {
 			while(true) {
 				initialize();
@@ -31,48 +48,48 @@ public class BigOrSmall {
 				checkChoiceBigOrSmall();
 				judge();
 				printResult();
-				if(winOrLose == "Win!!") {
+				if(winOrLose.equals(WIN)) {
 					while(true) {
 						win();
 						choiceContinueBIgOrSmall();
 						checkChoiceContinueBigOrSmall();
-						if(choiceContinueBigOrSmall == 0) {
+						if(choiceContinueBigOrSmall == YES) {
 							System.out.println("連続BET!!");
 							inputBetChip = getChip;
 							gameCount++;
 							cardPrev = new Card(deck.deckToInt(gameCount));
-							cardNew = new Card(deck.deckToInt(gameCount + 1));
+							cardNew = new Card(deck.deckToInt(gameCount + ONE));
 							printChoiceBigOrSmall();
 							checkChoiceBigOrSmall();
 							judge();
 							printResult();
-							if(winOrLose == "Win!!") {
+							if(winOrLose.equals(WIN)) {
 								continue;
-							}else if(winOrLose == "Lose...") {
+							}else if(winOrLose.equals(LOSE)) {
 								break;
 							}
-						}else if(choiceContinueBigOrSmall == 1) {
+						}else if(choiceContinueBigOrSmall == NO) {
 							System.out.println("チップを回収します");
 							chip.increaseChipNum(getChip);
-							winOrLose = "Lose...";
+							winOrLose = LOSE;
 							break;
 						}
 					}
 				}
-				if(winOrLose == "Lose...") {
+				if(winOrLose.equals(LOSE)) {
 					break;
 				}
 			}
-			if(chip.getScore() == 0) {
+			if(chip.getScore() == ZERO) {
 				System.out.println("チップが底をつきました");
 				break;
 			}
 			printContinueGame();
 			checkChoiceContinueGame();
-			if(choiceContinueGame == 0){
+			if(choiceContinueGame == YES){
 				System.out.println("ゲーム続行");
 				continue;
-			}else if(choiceContinueGame == 1) {
+			}else if(choiceContinueGame == NO) {
 				break;
 			}
 		}
@@ -84,12 +101,12 @@ public class BigOrSmall {
 
 //メソッドメンバゾーン　ここから↓
 	void initialize() {
-		gameCount = 0;					//呼び出す配列の位置 ->0からスタート
+		gameCount = ZERO;					//呼び出す配列の位置 ->0からスタート
 		deck = new Deck();				//デッキ初期化
 		deck.setDeck();					//デッキを整理
 		deck.shuffle();					//デッキのシャッフル
 		cardPrev = new Card(deck.deckToInt(gameCount));		//デッキからカードを1枚引く
-		cardNew = new Card(deck.deckToInt(gameCount + 1));	//次のカードも決めとく
+		cardNew = new Card(deck.deckToInt(gameCount + ONE));	//次のカードも決めとく
 	}
 	//初期の表示
 	void initialPrint() {
@@ -102,13 +119,13 @@ public class BigOrSmall {
 	//BET数入力表示
 	void printBet() {
 		System.out.println("\n" + "■BET枚数入力");
-		System.out.println("BETするチップ数を入力してください（最低1～最大20）");
+		System.out.println("BETするチップ数を入力してください（最低" + BET_CHIP_MIN + "～最大" + BET_CHIP_MAX + "）");
 	}
 	//選択表示(Big or Small)
 	void printChoiceBigOrSmall() {
 		System.out.println("\n" + "■Big or Small選択");
 		System.out.println("現在のカード： " + cardPrev.toString());
-		System.out.println("[Big or Small]" + "\n0:Big 1:Small");
+		System.out.println("[Big or Small]" + "\n" + BIG_INT + ":Big " + SMALL_INT + ":Small");
 	}
 	//結果表示
 	void printResult() {
@@ -126,52 +143,52 @@ public class BigOrSmall {
 		System.out.println("\n" + "--------現在のチップ枚数--------");
 		System.out.println(chip.toString());
 		System.out.println("----------------------------");
-		if(chip.getScore() == 0) {
+		if(chip.getScore() == ZERO) {
 			System.out.println("チップが底をつきました");
 		}
-		else if(chip.getScore() > 0) {
-			System.out.println("[ゲームを続けますか?]"+ "\n0:Yes 1:No");
+		else if(chip.getScore() > ZERO) {
+			System.out.println("[ゲームを続けますか?]"+ "\n" + YES + ":Yes " + NO + ":No");
 		}
 	}
 	//勝敗判定
 	void judge() {
 		switch(choiceBigOrSmall) {
-			case 0:	//Big
+			case BIG_INT:
 				if(cardPrev.getCardInt() < cardNew.getCardInt()) {
-					bigOrSmall = "Big";
-					winOrLose = "Win!!";
+					bigOrSmall = BIG_STR;
+					winOrLose = WIN;
 					break;
 				}else {
-					bigOrSmall = "Small";
-					winOrLose = "Lose...";
+					bigOrSmall = SMALL_STR;
+					winOrLose = LOSE;
 					break;
 				}
-			case 1:	//Small
+			case SMALL_INT:
 				if(cardPrev.getCardInt() < cardNew.getCardInt()) {
-					bigOrSmall = "Big";
-					winOrLose = "Lose...";
+					bigOrSmall = BIG_STR;
+					winOrLose = LOSE;
 					break;
 				}else {
-					bigOrSmall = "Small";
-					winOrLose = "Win!!";
+					bigOrSmall = SMALL_STR;
+					winOrLose = WIN;
 					break;
 				}
 		}
 	}
 	//勝ったとき
 	void win() {
-		getChip = inputBetChip * 2;
+		getChip = inputBetChip * DOUBLE;
 		System.out.println("チップ" + getChip + "枚を獲得しました");
 	}
 	//連続でBig or Smallを続けるか確認
 	void choiceContinueBIgOrSmall() {
-		System.out.println("\n" + "[獲得したチップ" + getChip + "枚でBig or Smallを続けますか?] 0:Yes 1:No");
+		System.out.println("\n" + "[獲得したチップ" + getChip + "枚でBig or Smallを続けますか?] " + YES + ":Yes " + NO + ":No");
 	}
 	//Big or Small で選んだ方を文章化
 	void choiceToString(int num) {
-		if(num == 0) {
+		if(num == BIG_INT) {
 			System.out.println("あなたの選択： Big");
-		}else if(num == 1) {
+		}else if(num == SMALL_INT) {
 			System.out.println("あなたの選択： Small");
 		}
 	}
@@ -193,9 +210,9 @@ public class BigOrSmall {
 			}
 		}
 	}
-	public static void checkChipBetNum(int input) throws NumberOutOfBoundException {
-		if (input < 1 || 20 < input) {
-			throw new NumberOutOfBoundException("チップポイントは半角数字の1〜20を入力してください ");
+	public void checkChipBetNum(int input) throws NumberOutOfBoundException {
+		if (input < BET_CHIP_MIN || BET_CHIP_MAX < input) {
+			throw new NumberOutOfBoundException("チップポイントは半角数字の" + BET_CHIP_MIN + "〜" + BET_CHIP_MAX + "を入力してください ");
 		}
 		if (chip.getScore() < input) {
 			throw new NumberOutOfBoundException("BETするチップポイントは総計のチップポイント以下で入力してください ");
@@ -211,7 +228,7 @@ public class BigOrSmall {
 			} catch (NumberOutOfBoundException e) {
 				System.out.println(e.getMessage());
 			} catch (InputMismatchException e) {
-				System.out.println("半角数字の0あるいは1のみ入力してください");
+				System.out.println("半角数字の" + CHOICE_0 + "あるいは" + CHOICE_1 + "のみ入力してください");
 			}
 		}
 	}
@@ -224,7 +241,7 @@ public class BigOrSmall {
 			} catch (NumberOutOfBoundException e) {
 				System.out.println(e.getMessage());
 			} catch (InputMismatchException e) {
-				System.out.println("半角数字の0あるいは1のみ入力してください");
+				System.out.println("半角数字の" + CHOICE_0 + "あるいは" + CHOICE_1 + "のみ入力してください");
 			}
 		}
 	}
@@ -237,13 +254,13 @@ public class BigOrSmall {
 			} catch (NumberOutOfBoundException e) {
 				System.out.println(e.getMessage());
 			} catch (InputMismatchException e) {
-				System.out.println("半角数字の0あるいは1のみ入力してください");
+				System.out.println("半角数字の" + CHOICE_0 + "あるいは" + CHOICE_1 + "のみ入力してください");
 			}
 		}
 	}
-	public static void checkChoice(int input) throws NumberOutOfBoundException {
-		if (input != 0 && input != 1) {
-			throw new NumberOutOfBoundException("半角数字の0あるいは1のみ入力してください");
+	public void checkChoice(int input) throws NumberOutOfBoundException {
+		if (input != CHOICE_0 && input != CHOICE_1) {
+			throw new NumberOutOfBoundException("半角数字の" + CHOICE_0 + "あるいは" + CHOICE_1 + "のみ入力してください");
 		}
 	}
 //例外処理ゾーン	ここまで↑
