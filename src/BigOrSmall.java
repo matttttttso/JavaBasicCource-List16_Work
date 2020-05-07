@@ -38,8 +38,9 @@ public class BigOrSmall {
 //プログラム記述		ここから↓
 	BigOrSmall(){
 		chip = new Chip(INITIAL_CHIP, ZERO);
-		while(true) {
-			while(true) {
+		CHIP_REMAIN_LOOP: while(chip.getScore() != ZERO) {
+			choiceContinueGame = YES;
+			CONTINUE_GAME_LOOP: while(choiceContinueGame == YES) {
 				initialize();
 				initialPrint();
 				checkInputBet();
@@ -49,7 +50,7 @@ public class BigOrSmall {
 				judge();
 				printResult();
 				if(winOrLose.equals(WIN)) {
-					while(true) {
+					CONSECUTIVE_WIN_LOOP: while(winOrLose.equals(WIN)) {
 						win();
 						choiceContinueBIgOrSmall();
 						checkChoiceContinueBigOrSmall();
@@ -64,33 +65,34 @@ public class BigOrSmall {
 							judge();
 							printResult();
 							if(winOrLose.equals(WIN)) {
-								continue;
+								continue CONSECUTIVE_WIN_LOOP;
 							}else if(winOrLose.equals(LOSE)) {
-								break;
+								winOrLose = LOSE;
+								break CONSECUTIVE_WIN_LOOP;
 							}
 						}else if(choiceContinueBigOrSmall == NO) {
 							System.out.println("チップを回収します");
 							chip.increaseChipNum(getChip);
 							winOrLose = LOSE;
-							break;
+							break CONSECUTIVE_WIN_LOOP;
 						}
 					}
 				}
 				if(winOrLose.equals(LOSE)) {
-					break;
+					break CONTINUE_GAME_LOOP;
 				}
 			}
 			if(chip.getScore() == ZERO) {
 				System.out.println("チップが底をつきました");
-				break;
+				break CHIP_REMAIN_LOOP;
 			}
 			printContinueGame();
 			checkChoiceContinueGame();
 			if(choiceContinueGame == YES){
 				System.out.println("ゲーム続行");
-				continue;
+				continue CHIP_REMAIN_LOOP;
 			}else if(choiceContinueGame == NO) {
-				break;
+				break CHIP_REMAIN_LOOP;
 			}
 		}
 		scanner.close();
@@ -104,7 +106,7 @@ public class BigOrSmall {
 		gameCount = ZERO;					//呼び出す配列の位置 ->0からスタート
 		deck = new Deck();				//デッキ初期化
 		deck.setDeck();					//デッキを整理
-		deck.shuffle();					//デッキのシャッフル
+//		deck.shuffle();					//デッキのシャッフル
 		cardPrev = new Card(deck.deckToInt(gameCount));		//デッキからカードを1枚引く
 		cardNew = new Card(deck.deckToInt(gameCount + ONE));	//次のカードも決めとく
 	}
